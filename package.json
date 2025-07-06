@@ -1,0 +1,24 @@
+{
+  "name": "refactoring-chpt1-statement",
+  "version": "1.0.0",
+  "description": "Code Example from Martin Fowler's Refactoring: Improving the Design of Existing Code.  Chapter 1's \"statement\" example.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmbertucci/refactoring-chpt1-statement.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/jmbertucci/refactoring-chpt1-statement/issues"
+  },
+  "homepage": "https://github.com/jmbertucci/refactoring-chpt1-statement#readme",
+  "devDependencies": {
+    "jest": "^30.0.4"
+  }
+}
