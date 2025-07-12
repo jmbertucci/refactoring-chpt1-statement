@@ -1,4 +1,4 @@
-import format from './formats.js';
+import format from './services/formats.js';
 
 function statement (invoice, plays) {
     let totalAmount = 0;
