@@ -1,4 +1,5 @@
 import format from './services/formats.js';
+import calc from './services/calculators.js';
 
 function statement (invoice, plays) {
     let totalAmount = 0;
@@ -7,24 +8,9 @@ function statement (invoice, plays) {
 
     for (let perf of invoice.performances) {
         const play = plays[perf.playID];
-        let thisAmount = 0;
-        switch (play.type) {
-            case "tragedy":
-                thisAmount = 40000;
-                if (perf.audience > 30) {
-                    thisAmount += 1000 * (perf.audience - 30);
-                }
-                break;
-            case "comedy":
-                thisAmount = 30000;
-                if (perf.audience > 20) {
-                    thisAmount += 10000 + 500 * (perf.audience - 20);
-                }
-                thisAmount += 300 * perf.audience;
-                break;
-            default:
-                throw new Error(`unknown type: ${play.type}`);
-        }
+        
+        let thisAmount = calc.cost.performance(play, perf);
+
         // add volume credits
         volumeCredits += Math.max(perf.audience - 30, 0);
         // add extra credit for every ten comedy attendees
@@ -39,3 +25,4 @@ function statement (invoice, plays) {
 }
 
 export default statement;
+
