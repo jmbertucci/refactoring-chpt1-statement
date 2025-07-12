@@ -22,8 +22,20 @@ function performance(play, perf) {
     return thisAmount;
 }
 
+function volumeCredits(perf, play) {
+    let credits = Math.max(perf.audience - 30, 0);
+
+    // add extra credit for every ten comedy attendees
+    if ("comedy" === play.type) credits += Math.floor(perf.audience / 5);
+
+    return credits;
+}
+
+
+
 export default {
     cost: {
         performance
     },
+    volumeCredits,
 }
