@@ -1,4 +1,3 @@
-
 function statement (invoice, plays) {
     let totalAmount = 0;
     let volumeCredits = 0;
@@ -40,4 +39,4 @@ function statement (invoice, plays) {
     return result;
 }
 
-module.exports = statement;
+export default statement;

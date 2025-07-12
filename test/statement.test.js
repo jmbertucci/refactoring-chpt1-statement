@@ -1,13 +1,14 @@
 import statement from '../src/statement';
 
-test('example statement', () => {
-    const invoice = require('./invoice.json');
-    const plays = require('./plays.json');
+import invoice from './invoice.json' with { type: 'json' };
+import invoiceNew from './invoice_new_plays.json' with { type: 'json' };
+import plays from './plays.json' with { type: 'json' };
+import playsNew from './new_plays.json' with { type: 'json' };
+
+test('example statement', async () => {
     expect(statement(invoice, plays)).toMatchSnapshot();
 });
 
 test('statement with new play types', () => {
-    const invoice = require('./invoice_new_plays.json');
-    const plays = require('./new_plays.json');
-    expect(() => {statement(invoice, plays)}).toThrow(/unknown type/);
+    expect(() => {statement(invoiceNew, playsNew)}).toThrow(/unknown type/);
 });

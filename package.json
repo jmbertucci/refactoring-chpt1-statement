@@ -4,7 +4,7 @@
   "description": "Code Example from Martin Fowler's Refactoring: Improving the Design of Existing Code.  Chapter 1's \"statement\" example.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {
     "type": "git",
