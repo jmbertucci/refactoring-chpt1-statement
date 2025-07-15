@@ -10,5 +10,5 @@ test('example statement', async () => {
 });
 
 test('statement with new play types', () => {
-    expect(() => {statement(invoiceNew, playsNew)}).toThrow(/unknown type/);
+    expect(() => {statement(invoiceNew, playsNew)}).toThrow(/Unknown play/);
 });

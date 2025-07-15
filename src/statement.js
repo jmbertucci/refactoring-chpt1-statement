@@ -1,5 +1,5 @@
-import format from './services/formats.js';
-import calc from './services/calculators.js';
+import format from './services/formatsService.js';
+import createPlay from './services/playFactory.js';
 
 function statement (invoice, plays) {
     let totalAmount = 0;
@@ -7,17 +7,16 @@ function statement (invoice, plays) {
     let result = `Statement for ${invoice.customer}\n`;
 
     for (let perf of invoice.performances) {
-        const play = plays[perf.playID];
-        
-        let thisAmount = calc.cost.performance(play, perf);
+        const play = createPlay(plays[perf.playID]);
 
-        // add volume credits
-        volumeCredits += calc.volumeCredits(perf, play);
+        const playAmount = play.calculateCost(perf.audience);
+        const playCredits = play.calculateVolumeCredits(perf.audience);
 
         // print line for this order
-        result += ` ${play.name}: ${format.usd(thisAmount/100)} (${perf.audience} seats)\n`;
-        
-        totalAmount += thisAmount;
+        result += ` ${play.name}: ${format.usd(playAmount/100)} (${perf.audience} seats)\n`;
+
+        volumeCredits += playCredits;
+        totalAmount += playAmount;
     }
 
     result += `Amount owed is ${format.usd(totalAmount/100)}\n`;
