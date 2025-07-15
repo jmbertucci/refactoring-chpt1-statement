@@ -3,7 +3,7 @@ import createPlay from './services/playFactory.js';
 
 function statement (invoice, plays) {
     let totalAmount = 0;
-    let volumeCredits = 0;
+    let totalCredits = 0;
     let result = `Statement for ${invoice.customer}\n`;
 
     for (let perf of invoice.performances) {
@@ -15,12 +15,12 @@ function statement (invoice, plays) {
         // print line for this order
         result += ` ${play.name}: ${format.usd(playAmount/100)} (${perf.audience} seats)\n`;
 
-        volumeCredits += playCredits;
+        totalCredits += playCredits;
         totalAmount += playAmount;
     }
 
     result += `Amount owed is ${format.usd(totalAmount/100)}\n`;
-    result += `You earned ${volumeCredits} credits\n`;
+    result += `You earned ${totalCredits} credits\n`;
 
     return result;
 }
